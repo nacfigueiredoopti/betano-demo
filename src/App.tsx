@@ -6,6 +6,10 @@ import DepositPage from './components/DepositPage';
 
 const optimizelyClient = createInstance({
   sdkKey: 'PyeuxTPfaBgAB4g3etHPC',
+  datafileOptions: {
+    autoUpdate: true,
+    updateInterval: 1000, // Poll for updates every 1 second
+  },
 });
 
 function App() {

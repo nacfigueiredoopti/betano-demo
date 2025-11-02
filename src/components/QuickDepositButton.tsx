@@ -1,6 +1,5 @@
-import React from 'react';
-import { useDecision } from '@optimizely/react-sdk';
-import { createInstance } from '@optimizely/react-sdk';
+import React, { useEffect } from 'react';
+import { useDecision, OptimizelyContext } from '@optimizely/react-sdk';
 import './QuickDepositButton.css';
 
 interface QuickDepositButtonProps {
@@ -9,18 +8,23 @@ interface QuickDepositButtonProps {
 }
 
 const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDeposit, userId }) => {
-  // Use Optimizely feature flag for button variation
+  // Use Optimizely feature flag for button variation with auto-update
   const [decision] = useDecision('quick_deposit_button_variation', { autoUpdate: true });
+  const { optimizely } = React.useContext(OptimizelyContext);
 
   const variation = decision.variationKey || 'control';
 
+  // Log when variation changes (for debugging)
+  useEffect(() => {
+    console.log('🎨 Button variation updated:', variation);
+  }, [variation]);
+
   const handleClick = () => {
-    // Track button click event in Optimizely
-    const optimizely = createInstance({ sdkKey: 'PyeuxTPfaBgAB4g3etHPC' });
-    optimizely.onReady().then(() => {
+    // Track button click event in Optimizely using shared client
+    if (optimizely) {
       optimizely.track('quick_deposit_clicked', userId);
-      console.log('Optimizely Event Tracked: quick_deposit_clicked', { userId, variation });
-    });
+      console.log('📊 Optimizely Event Tracked: quick_deposit_clicked', { userId, variation });
+    }
 
     onNavigateToDeposit();
   };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createInstance } from '@optimizely/react-sdk';
+import { OptimizelyContext } from '@optimizely/react-sdk';
 import './DepositPage.css';
 
 interface DepositPageProps {
@@ -12,6 +12,7 @@ const DepositPage: React.FC<DepositPageProps> = ({ onNavigateToHome, userId }) =
   const [paymentMethod, setPaymentMethod] = useState<string>('credit_card');
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const { optimizely } = React.useContext(OptimizelyContext);
 
   const handleDeposit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,19 +23,18 @@ const DepositPage: React.FC<DepositPageProps> = ({ onNavigateToHome, userId }) =
       setIsProcessing(false);
       setIsComplete(true);
 
-      // Track deposit completion event in Optimizely
-      const optimizely = createInstance({ sdkKey: 'PyeuxTPfaBgAB4g3etHPC' });
-      optimizely.onReady().then(() => {
+      // Track deposit completion event in Optimizely using shared client
+      if (optimizely) {
         optimizely.track('deposit_completed', userId, {
           amount: parseFloat(amount),
           payment_method: paymentMethod,
         });
-        console.log('Optimizely Event Tracked: deposit_completed', {
+        console.log('📊 Optimizely Event Tracked: deposit_completed', {
           userId,
           amount: parseFloat(amount),
           paymentMethod,
         });
-      });
+      }
 
       // Redirect back to home after 3 seconds
       setTimeout(() => {
