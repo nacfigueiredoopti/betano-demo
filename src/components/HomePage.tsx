@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDecision } from '@optimizely/react-sdk';
 import './HomePage.css';
 import QuickDepositButton from './QuickDepositButton';
 
@@ -8,6 +9,11 @@ interface HomePageProps {
 }
 
 const HomePage: React.FC<HomePageProps> = ({ onNavigateToDeposit, userId }) => {
+  // Check variation to determine button placement
+  const [decision] = useDecision('quick_deposit_button_variation', { autoUpdate: true });
+  const variation = decision.variationKey || 'control';
+  const showInlineButton = variation === 'inline_below_join';
+
   return (
     <div className="home-page">
       {/* Header */}
@@ -35,6 +41,14 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToDeposit, userId }) => {
           <div className="hero-cta">
             <button className="btn-primary">Join Now</button>
             <button className="btn-secondary">Explore Sports</button>
+            {/* Inline Quick Deposit Button for inline_below_join variation */}
+            {showInlineButton && (
+              <QuickDepositButton
+                onNavigateToDeposit={onNavigateToDeposit}
+                userId={userId}
+                inline={true}
+              />
+            )}
           </div>
         </div>
         <div className="hero-image">
@@ -42,8 +56,10 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToDeposit, userId }) => {
         </div>
       </section>
 
-      {/* Quick Deposit CTA */}
-      <QuickDepositButton onNavigateToDeposit={onNavigateToDeposit} userId={userId} />
+      {/* Quick Deposit CTA - Fixed position for other variations */}
+      {!showInlineButton && (
+        <QuickDepositButton onNavigateToDeposit={onNavigateToDeposit} userId={userId} />
+      )}
 
       {/* Sports Grid */}
       <section className="sports-grid">

@@ -5,9 +5,10 @@ import './QuickDepositButton.css';
 interface QuickDepositButtonProps {
   onNavigateToDeposit: () => void;
   userId: string;
+  inline?: boolean; // For inline positioning in hero section
 }
 
-const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDeposit, userId }) => {
+const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDeposit, userId, inline = false }) => {
   // Use Optimizely feature flag for button variation with auto-update
   const [decision] = useDecision('quick_deposit_button_variation', { autoUpdate: true });
   const { optimizely } = React.useContext(OptimizelyContext);
@@ -32,6 +33,7 @@ const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDep
   const getButtonIcon = () => {
     switch (variation) {
       case 'green_arrow':
+      case 'inline_below_join':
         return '➜'; // Green arrow
       case 'orange_arrow':
         return '➜'; // Orange arrow
@@ -45,8 +47,15 @@ const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDep
     return `quick-deposit-btn variation-${variation}`;
   };
 
+  const getContainerClass = () => {
+    if (variation === 'inline_below_join' || inline) {
+      return 'quick-deposit-container inline';
+    }
+    return 'quick-deposit-container';
+  };
+
   return (
-    <div className="quick-deposit-container">
+    <div className={getContainerClass()}>
       <button
         className={getButtonClass()}
         onClick={handleClick}
