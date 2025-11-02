@@ -1,0 +1,357 @@
+.deposit-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+}
+
+.deposit-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+.deposit-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 135, 0.2);
+  border-radius: 20px;
+  padding: 3rem;
+}
+
+.deposit-card h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #00ff87 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.deposit-subtitle {
+  color: #a0aec0;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.amount-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-symbol {
+  position: absolute;
+  left: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00ff87;
+}
+
+.amount-input-container input {
+  width: 100%;
+  padding: 1.2rem 1.5rem 1.2rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 255, 135, 0.3);
+  border-radius: 12px;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+.amount-input-container input:focus {
+  outline: none;
+  border-color: #00ff87;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.quick-amounts {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.quick-amount-btn {
+  flex: 1;
+  min-width: 80px;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 255, 135, 0.3);
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.quick-amount-btn:hover {
+  background: rgba(0, 255, 135, 0.2);
+  border-color: #00ff87;
+}
+
+.quick-amount-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+select {
+  width: 100%;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 255, 135, 0.3);
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+select:focus {
+  outline: none;
+  border-color: #00ff87;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+select option {
+  background: #1a1f3a;
+  color: #ffffff;
+}
+
+.payment-info {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(0, 255, 135, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 135, 0.3);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.info-icon {
+  font-size: 1.2rem;
+}
+
+.btn-submit-deposit {
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00ff87 0%, #00d4ff 100%);
+  border: none;
+  border-radius: 12px;
+  color: #0a0e27;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 1rem;
+}
+
+.btn-submit-deposit:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 255, 135, 0.5);
+}
+
+.btn-submit-deposit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.deposit-footer {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: #a0aec0;
+}
+
+.deposit-footer p {
+  margin: 0.5rem 0;
+}
+
+.responsible-gaming {
+  font-weight: 600;
+  color: #ff6b00;
+  margin-top: 1rem;
+}
+
+.deposit-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 135, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.info-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #00ff87;
+}
+
+.info-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-card li {
+  margin: 0.8rem 0;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.info-card p {
+  color: #a0aec0;
+  margin-bottom: 1rem;
+}
+
+.link {
+  color: #00ff87;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.link:hover {
+  color: #00d4ff;
+}
+
+.btn-back {
+  background: transparent;
+  border: 2px solid #00ff87;
+  color: #00ff87;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-back:hover {
+  background: #00ff87;
+  color: #0a0e27;
+}
+
+/* Success Message */
+.success-message {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 135, 0.5);
+  border-radius: 20px;
+  animation: successPulse 0.5s ease-out;
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-icon {
+  font-size: 5rem;
+  color: #00ff87;
+  margin-bottom: 1.5rem;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(0, 255, 135, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  animation: checkmark 0.5s ease-out 0.2s backwards;
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.success-message h2 {
+  font-size: 2.5rem;
+  color: #00ff87;
+  margin-bottom: 1rem;
+}
+
+.success-message p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin: 0.5rem 0;
+}
+
+.redirect-message {
+  color: #a0aec0;
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .deposit-container {
+    grid-template-columns: 1fr;
+  }
+
+  .deposit-sidebar {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .deposit-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .deposit-card h1 {
+    font-size: 2rem;
+  }
+
+  .payment-info {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .quick-amounts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
