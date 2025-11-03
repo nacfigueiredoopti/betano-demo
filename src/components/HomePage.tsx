@@ -12,7 +12,11 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigateToDeposit, userId }) => {
   // Check variation to determine button placement
   const [decision] = useDecision('quick_deposit_button_variation', { autoUpdate: true });
   const variation = decision.variationKey || 'control';
-  const showInlineButton = variation === 'inline_below_join';
+  const variables = decision.variables || {};
+  const buttonPosition = (variables.button_position as string) || 'floating';
+
+  // Show inline button if position is 'inline' or legacy variation is 'inline_below_join'
+  const showInlineButton = buttonPosition === 'inline' || variation === 'inline_below_join';
 
   return (
     <div className="home-page">

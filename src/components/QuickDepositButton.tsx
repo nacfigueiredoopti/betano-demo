@@ -20,12 +20,13 @@ const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDep
   const headline = (variables.headline as string) || 'Quick Deposit';
   const icon = (variables.icon as string) || 'plus';
   const buttonColor = (variables.button_color as string) || 'control';
+  const buttonPosition = (variables.button_position as string) || 'floating';
 
   // Log when variation changes (for debugging)
   useEffect(() => {
     console.log('🎨 Button variation updated:', variation);
-    console.log('📊 Feature Variables:', { headline, icon, buttonColor });
-  }, [variation, headline, icon, buttonColor]);
+    console.log('📊 Feature Variables:', { headline, icon, buttonColor, buttonPosition });
+  }, [variation, headline, icon, buttonColor, buttonPosition]);
 
   const handleClick = () => {
     // Track button click event in Optimizely using shared client
@@ -36,7 +37,8 @@ const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDep
         variation,
         headline,
         icon,
-        buttonColor
+        buttonColor,
+        buttonPosition
       });
     }
 
@@ -59,7 +61,8 @@ const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDep
   };
 
   const getContainerClass = () => {
-    if (variation === 'inline_below_join' || inline) {
+    // Use button_position variable to determine positioning
+    if (buttonPosition === 'inline' || variation === 'inline_below_join' || inline) {
       return 'quick-deposit-container inline';
     }
     return 'quick-deposit-container';
