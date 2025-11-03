@@ -33,75 +33,65 @@
   font-weight: 700;
 }
 
-/* Control Variation - Non-prominent with Cross icon */
-.variation-control {
+/* Button Color Variations */
+
+/* Control - Non-prominent */
+.button-color-control {
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
 
-.variation-control:hover {
+.button-color-control:hover {
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-.variation-control .btn-icon {
+.button-color-control .btn-icon {
   color: #a0aec0;
 }
 
-/* Green Arrow Variation */
-.variation-green_arrow {
+/* Green */
+.button-color-green {
   background: linear-gradient(135deg, #00ff87 0%, #00d4aa 100%);
   color: #0a0e27;
   border: none;
 }
 
-.variation-green_arrow:hover {
+.button-color-green:hover {
   box-shadow: 0 8px 30px rgba(0, 255, 135, 0.6);
 }
 
-.variation-green_arrow .btn-icon {
+.button-color-green .btn-icon {
   color: #0a0e27;
   font-weight: 900;
 }
 
-/* Orange Arrow Variation */
-.variation-orange_arrow {
+/* Orange */
+.button-color-orange {
   background: linear-gradient(135deg, #ff6b00 0%, #ff9500 100%);
   color: #ffffff;
   border: none;
 }
 
-.variation-orange_arrow:hover {
+.button-color-orange:hover {
   box-shadow: 0 8px 30px rgba(255, 107, 0, 0.6);
 }
 
-.variation-orange_arrow .btn-icon {
+.button-color-orange .btn-icon {
   color: #ffffff;
   font-weight: 900;
 }
 
-/* Inline Below Join Button Variation */
+/* Inline positioning */
 .quick-deposit-container.inline {
   position: static;
   margin-top: 1rem;
   display: inline-block;
 }
 
-.variation-inline_below_join {
-  background: linear-gradient(135deg, #00ff87 0%, #00d4aa 100%);
-  color: #0a0e27;
-  border: none;
+.quick-deposit-container.inline .quick-deposit-btn {
   width: 100%;
-}
-
-.variation-inline_below_join:hover {
-  box-shadow: 0 8px 30px rgba(0, 255, 135, 0.6);
-}
-
-.variation-inline_below_join .btn-icon {
-  color: #0a0e27;
-  font-weight: 900;
 }
 
 /* Responsive */

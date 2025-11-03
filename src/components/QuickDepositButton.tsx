@@ -14,37 +14,48 @@ const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDep
   const { optimizely } = React.useContext(OptimizelyContext);
 
   const variation = decision.variationKey || 'control';
+  const variables = decision.variables || {};
+
+  // Get feature flag variables with defaults
+  const headline = (variables.headline as string) || 'Quick Deposit';
+  const icon = (variables.icon as string) || 'plus';
+  const buttonColor = (variables.button_color as string) || 'control';
 
   // Log when variation changes (for debugging)
   useEffect(() => {
     console.log('🎨 Button variation updated:', variation);
-  }, [variation]);
+    console.log('📊 Feature Variables:', { headline, icon, buttonColor });
+  }, [variation, headline, icon, buttonColor]);
 
   const handleClick = () => {
     // Track button click event in Optimizely using shared client
     if (optimizely) {
       optimizely.track('quick_deposit_clicked', userId);
-      console.log('📊 Optimizely Event Tracked: quick_deposit_clicked', { userId, variation });
+      console.log('📊 Optimizely Event Tracked: quick_deposit_clicked', {
+        userId,
+        variation,
+        headline,
+        icon,
+        buttonColor
+      });
     }
 
     onNavigateToDeposit();
   };
 
   const getButtonIcon = () => {
-    switch (variation) {
-      case 'green_arrow':
-      case 'inline_below_join':
-        return '➜'; // Green arrow
-      case 'orange_arrow':
-        return '➜'; // Orange arrow
-      case 'control':
-      default:
-        return '✕'; // Cross icon
+    // Use the icon variable from Optimizely
+    if (icon === 'green_arrow') {
+      return '➜'; // Green arrow
+    } else if (icon === 'plus') {
+      return '+'; // Plus icon
     }
+    return '+'; // Default to plus
   };
 
   const getButtonClass = () => {
-    return `quick-deposit-btn variation-${variation}`;
+    // Use button_color variable for styling
+    return `quick-deposit-btn button-color-${buttonColor}`;
   };
 
   const getContainerClass = () => {
@@ -59,10 +70,10 @@ const QuickDepositButton: React.FC<QuickDepositButtonProps> = ({ onNavigateToDep
       <button
         className={getButtonClass()}
         onClick={handleClick}
-        aria-label="Quick Deposit"
+        aria-label={headline}
       >
         <span className="btn-icon">{getButtonIcon()}</span>
-        <span className="btn-text">Quick Deposit</span>
+        <span className="btn-text">{headline}</span>
       </button>
     </div>
   );
